@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export class SelectControl extends React.Component {
     static propTypes = {
         onChange: PropTypes.func.isRequired,
+        onBlur: PropTypes.func,
         value: PropTypes.string.isRequired,
         error: PropTypes.shape({
             message: PropTypes.string
@@ -15,10 +16,13 @@ export class SelectControl extends React.Component {
     };
 
     render() {
-        const { value, options, className } = this.props;
+        const { value, options, onBlur, className } = this.props;
 
         return (
-            <select onChange={this.onChange} value={value} className={className}>
+            <select onChange={this.onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    className={className}>
                 {
                     options.map(({ label, value }) => {
                         return (
@@ -33,5 +37,6 @@ export class SelectControl extends React.Component {
     onChange = (event) => {
         this.props.onChange(event.target.value);
     };
+
 }
 

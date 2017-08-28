@@ -38,10 +38,12 @@ class App extends Component {
                         (props) => (<BootstrapTextInput {...props} />)
                     }
                 </Field>
+
                 <Field label="Pick an option"
                        value={choice}
                        error={error.choice}
-                       onChange={this.onChoiceChange}>
+                       onChange={this.onChoiceChange}
+                       onBlur={this.onChoiceBlur}>
                     {
                         (props) => (<BootstrapSelect {...props}
                                                      options={this.state.optionList} />)
@@ -63,9 +65,15 @@ class App extends Component {
     };
 
     onChoiceChange = (newValue) => {
-        const hasError = newValue === '';
+        this.setState({ choice: newValue });
+    };
+
+    onChoiceBlur = () => {
+        const { choice } = this.state;
+
+        const hasError = choice === '';
         this.setState({
-            choice: newValue, error: {
+            error: {
                 choice: hasError ? { message: 'Must select a value' } : null,
                 text: this.state.error.text
             }
