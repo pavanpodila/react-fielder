@@ -35,10 +35,10 @@ the _presentation-input-component_. This is a pattern explained well in this [Me
 
 Now this leaves an open question about _Form Validation_. How should one approach it?
 
-Validation can be done as a reaction to the value change. This can applied:
+Validation can be done as a reaction to the value change. This can be applied:
 
 - **Immediately**: as part of the `onChange` callback
-- **Focus Change**: as part of the `onBlur` callback
+- **On Focus Change**: as part of the `onBlur` callback
 - **Explicitly**: by invoking directly. This could at the beginning or on explicit
 events like form submission. 
 
