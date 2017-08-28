@@ -76,8 +76,8 @@ We can still use it like so:
 Note that the passed in child is a `function` that adapts to the interface of the
 third party control.
 
-Inside our application, we have a store from which we are setting the **value** for the field.
-Validation is being done via **MobX** as a `reaction` to the change in value. Currently, it's
+Inside our application, we have a simple validation rule that flags the `Field` as erroneous
+if the text contains the word "_error_". Currently, it's
 being done immediately, but it could easily be triggered as part of the `onBlur`. 
 
 The important thing to note is that the application controls the validation strategy. It is
