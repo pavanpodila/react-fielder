@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import { Field } from './components/field';
-import { TextInput } from './components/controls/text';
+import { NumberInput, TextInput } from './components/controls/text';
 import { withBootstrapContainer } from './components/bootstrap-container';
 import { SelectControl } from './components/controls/select';
 
 const BootstrapTextInput = withBootstrapContainer(TextInput);
 const BootstrapSelect = withBootstrapContainer(SelectControl);
+const BootstrapNumberInput = withBootstrapContainer(NumberInput);
 
 class App extends Component {
     state = {
         text: 'Hello World',
         choice: 'none',
+        number: -1,
         optionList: [
             { value: '', label: 'Select...' },
             { value: 'option-1', label: 'Option 1' },
@@ -25,7 +27,7 @@ class App extends Component {
     };
 
     render() {
-        const { text, choice, error } = this.state;
+        const { text, choice, number, error } = this.state;
 
         return (
             <div className="App">
@@ -49,6 +51,14 @@ class App extends Component {
                                                      options={this.state.optionList} />)
                     }
                 </Field>
+
+                <Field label="Set a Number"
+                       value={number}
+                       onChange={this.onNumberChange}>
+                    {
+                        (props) => (<BootstrapNumberInput {...props} />)
+                    }
+                </Field>
             </div>
         );
     }
@@ -61,6 +71,14 @@ class App extends Component {
                 text: hasError ? { message: 'Cannot have error in the text' } : null,
                 choice: this.state.error.choice
             }
+        });
+    };
+
+    onNumberChange = (newValue) => {
+        console.log(newValue, typeof(newValue) === 'number');
+
+        this.setState({
+            number: newValue,
         });
     };
 

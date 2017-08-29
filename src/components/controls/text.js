@@ -28,3 +28,21 @@ export class TextInput extends React.Component {
 
 }
 
+export const NumberInput = withInputTransform(TextInput, value => String(value), value => Number(value));
+
+export function withInputTransform(Component, fromValueFn, toValueFn) {
+    return class TransformedInput extends React.Component {
+        render() {
+            const value = fromValueFn(this.props.value);
+
+            return (
+                <Component {...this.props} value={value} onChange={this.onChange} />
+            );
+        }
+
+        onChange = (value) => {
+            const changedValue = toValueFn(value);
+            this.props.onChange(changedValue);
+        };
+    }
+}
