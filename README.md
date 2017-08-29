@@ -45,6 +45,31 @@ events like form submission.
 The purpose of the validation routine is to set the `error` prop on the Field. The
 validation itself could be synchronous or asynchronous.
 
+### Value Transformation
+
+When you need some type guarantees on the input values, you can choose to wrap an Input control
+with a transformation function. This HOC wrapper will transform values bi-directionally,
+always ensuring the type of the input-value.
+
+`withInputTransformation(Component, fromValueFn, toValueFn)` is our HOC wrapper for doing
+this transformation.
+
+- `Component`: This is the Input control that renders the input
+- `fromValueFn`: transforms from the _typed-value_ to something suitable for rendering purposes. 
+You can also use this to do formatting on the input values.
+- `toValueFn`: transforms from the _rendered-value_ to a type-safe value. This removes 
+all the formatting and bring the value back to its original type. 
+
+Eg:
+
+```js
+export const NumberInput = withInputTransform(
+    TextInput, 
+    value => String(value), 
+    value => Number(value)
+);
+
+```
 ### Example Usage
 
 Let's say we have a special `<TextInput />` that we would like to use. Since its part of 
