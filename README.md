@@ -56,9 +56,8 @@ this transformation.
 
 - `Component`: This is the Input control that renders the input
 - `fromValueFn`: transforms from the _typed-value_ to something suitable for rendering purposes. 
-You can also use this to do formatting on the input values.
-- `toValueFn`: transforms from the _rendered-value_ to a type-safe value. This removes 
-all the formatting and bring the value back to its original type. 
+You can also use this for formatting the input values.
+- `toValueFn`: transforms from the _rendered-value_ to a type-safe value. This removes all formatting and brings the value back to its original type. 
 
 Eg:
 
