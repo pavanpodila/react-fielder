@@ -51,7 +51,7 @@ When you need some type guarantees on the input values, you can choose to wrap a
 with a transformation function. This HOC wrapper will transform values bi-directionally,
 always ensuring the type of the input-value.
 
-`withInputTransformation(Component, fromValueFn, toValueFn)` is our HOC wrapper for doing
+`withInputTransform(Component, fromValueFn, toValueFn)` is our HOC wrapper for doing
 this transformation.
 
 - `Component`: This is the Input control that renders the input
